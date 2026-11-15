@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/sky.gd" id="2_sky"]
+[ext_resource type="Script" path="res://scripts/fx.gd" id="3_fx"]
+[ext_resource type="PackedScene" path="res://scenes/goal.tscn" id="4_goal"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="5_player"]
+[ext_resource type="Script" path="res://scripts/level_select.gd" id="6_menu"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Sky" type="Node2D" parent="Background"]
+script = ExtResource("2_sky")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Goal" parent="." instance=ExtResource("4_goal")]
+
+[node name="Player" parent="." instance=ExtResource("5_player")]
+position = Vector2(140, 578)
+
+[node name="Fx" type="Node2D" parent="."]
+script = ExtResource("3_fx")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BannerLabel" type="Label" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 34
+text = "PACKAGE DELIVERED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelSelect" type="CanvasLayer" parent="."]
+script = ExtResource("6_menu")
